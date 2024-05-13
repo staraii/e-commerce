@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Provider } from "react-redux";
+import { store } from "store/store.ts";
 import App from './App.tsx'
 import './index.css'
 import { initializeApp } from "firebase/app";
@@ -20,6 +22,8 @@ export const db = getFirestore(app);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-)
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</React.StrictMode>
+);
