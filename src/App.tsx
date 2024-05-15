@@ -1,14 +1,14 @@
 import ReduxTest from "components/ReduxTest";
-import './App.css'
+import Cart from "pages/Cart";
 
+import "./App.css";
 
 function App() {
-
-	return (
-		<section>
-			<ReduxTest />
-		</section>
-	)
+  return (
+    <section>
+      <ReduxTest />
+    </section>
+  );
 }
 
-export default App
+export default App;
