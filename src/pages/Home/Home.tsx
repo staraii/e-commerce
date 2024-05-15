@@ -36,7 +36,7 @@ function Home() {
 				</section>
 
 				<section className={styles.categorySection}>
-					<h2>Katergori</h2>
+					<h2 className={styles.categorySectionH2}>Katergori</h2>
 					<Link className={styles.categoryLink} to='/cart'>
 						Skor
 					</Link>

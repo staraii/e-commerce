@@ -34,6 +34,10 @@
 	width: 35%;
 	height: 80vh;
 }
+.categorySectionH2 {
+	display: flex;
+	justify-content: center;
+}
 
 .categoryLink {
 	display: flex;
@@ -60,6 +64,9 @@
 }
 
 .product {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	border: solid blue 2px;
 	margin: 10px;
 	background-color: #f0f0f0;
