@@ -27,7 +27,7 @@
 	width: 100vw;
 }
 
-.categorySection {
+.asideSection {
 	display: flex;
 	flex-direction: column;
 	background-color: #347cd4;
@@ -35,17 +35,18 @@
 	width: 35%;
 	height: 80vh;
 }
-.categorySectionH2 {
+.asideSectionH2 {
 	display: flex;
 	justify-content: center;
+	border-bottom: #f0f0f0 1px solid;
 }
 
-.categoryLink {
+.asideLink {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-color: #347cd4;
-	border: white 1px solid;
+	border-bottom: white 1px solid;
 	height: inherit;
 	color: black;
 }

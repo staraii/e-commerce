@@ -26,21 +26,21 @@ function Home() {
 					</section>
 				</section>
 
-				<section className={styles.categorySection}>
-					<h2 className={styles.categorySectionH2}>Katergorier</h2>
-					<Link className={styles.categoryLink} to='/cart'>
+				<aside className={styles.asideSection}>
+					<h2 className={styles.asideSectionH2}>Katergorier</h2>
+					<Link className={styles.asideLink} to='/cart'>
 						Skor
 					</Link>
-					<Link className={styles.categoryLink} to='/cart'>
+					<Link className={styles.asideLink} to='/cart'>
 						Tröjor
 					</Link>
-					<Link className={styles.categoryLink} to='/cart'>
+					<Link className={styles.asideLink} to='/cart'>
 						Byxor
 					</Link>
-					<Link className={styles.categoryLink} to='/cart'>
+					<Link className={styles.asideLink} to='/cart'>
 						Hattar
 					</Link>
-				</section>
+				</aside>
 			</div>
 		</section>
 	);
