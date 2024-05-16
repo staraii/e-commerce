@@ -1,27 +1,29 @@
-import ReduxTest from "components/ReduxTest/ReduxTest";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "pages/Home/Home";
-import Products from "pages/Products/Products"
-import Cart from "pages/Cart/Cart";
-import Admin from "pages/Admin/Admin";
-import './App.css'
-
+import ReduxTest from 'components/ReduxTest/ReduxTest';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from 'pages/Home/Home';
+import Products from 'pages/Products/Products';
+import Cart from 'pages/Cart/Cart';
+import Admin from 'pages/Admin/Admin';
+import './App.css';
+import Fotter from 'components/ReduxTest/fotter/fotter';
+import NavBar from 'components/NavBar/NavBar';
 
 function App() {
-
 	return (
 		<section>
 			<Router>
+				<NavBar />
 				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/products" element={<Products />} />
-					<Route path="/cart" element={<Cart />} />
-					<Route path="/admin" element={<Admin />} />
-					<Route path="/redux" element={<ReduxTest />}/>
+					<Route path='/' element={<Home />} />
+					<Route path='/products' element={<Products />} />
+					<Route path='/cart' element={<Cart />} />
+					<Route path='/admin' element={<Admin />} />
+					<Route path='/redux' element={<ReduxTest />} />
 				</Routes>
 			</Router>
+			<Fotter />
 		</section>
 	);
 }
 
-export default App
+export default App;
