@@ -1,12 +1,27 @@
 import styles from './home.module.css';
 import { Link } from 'react-router-dom';
+import { TypeAnimation } from 'react-type-animation';
+
 function Home() {
 	return (
 		<section className={styles.section}>
 			<div className={styles.container}>
 				<section className={styles.productSection}>
-					<h2>Köp något för att bli glad</h2>
-					<h4>Men köp något då</h4>
+					<TypeAnimation
+						sequence={[
+							'Why dont you checkout our Jackets?',
+							1500,
+							'Why dont you checkout our Pants?',
+							1500,
+							'Why dont you checkout our Shoes?',
+							1500,
+							'Why dont you checkout our Shirts?',
+							1500,
+						]}
+						speed={50}
+						style={{ fontSize: '3rem', fontWeight: 'bold' }}
+						repeat={Infinity}
+					/>
 					<section className={styles.productPics}>
 						<Link className={styles.product} to='/cart'>
 							Bild på produkt
@@ -27,7 +42,7 @@ function Home() {
 				</section>
 
 				<aside className={styles.asideSection}>
-					<h2 className={styles.asideSectionH2}>Katergorier</h2>
+					<h2 className={styles.categorySectionH2}>Katergorier</h2>
 					<Link className={styles.asideLink} to='/cart'>
 						Skor
 					</Link>
