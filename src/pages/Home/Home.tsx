@@ -3,15 +3,6 @@ import { Link } from 'react-router-dom';
 function Home() {
 	return (
 		<section className={styles.section}>
-			<nav className={styles.navBar}>
-				<Link className={styles.link} to='/products'>
-					Products
-				</Link>
-				<Link className={styles.link} to='/cart'>
-					Cart
-				</Link>
-			</nav>
-
 			<div className={styles.container}>
 				<section className={styles.productSection}>
 					<h2>Köp något för att bli glad</h2>
@@ -36,7 +27,7 @@ function Home() {
 				</section>
 
 				<section className={styles.categorySection}>
-					<h2 className={styles.categorySectionH2}>Katergori</h2>
+					<h2 className={styles.categorySectionH2}>Katergorier</h2>
 					<Link className={styles.categoryLink} to='/cart'>
 						Skor
 					</Link>
