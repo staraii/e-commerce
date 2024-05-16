@@ -4,12 +4,14 @@ import Home from 'pages/Home/Home';
 import Products from 'pages/Products/Products';
 import Cart from 'pages/Cart/Cart';
 import Admin from 'pages/Admin/Admin';
+import NavBar from 'components/NavBar/NavBar';
 import './App.css';
 
 function App() {
 	return (
 		<section>
 			<Router>
+				<NavBar />
 				<Routes>
 					<Route path='/' element={<Home />} />
 					<Route path='/products' element={<Products />} />

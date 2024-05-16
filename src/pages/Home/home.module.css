@@ -1,6 +1,7 @@
 .section {
 	display: flex;
 	display: block;
+	margin-top: 5%;
 }
 
 .link {
