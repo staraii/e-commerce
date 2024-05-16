@@ -10,15 +10,15 @@ function Home() {
 					<TypeAnimation
 						sequence={[
 							'Why dont you checkout our Jackets?',
-							1500,
+							2000,
 							'Why dont you checkout our Pants?',
-							1500,
+							2000,
 							'Why dont you checkout our Shoes?',
-							1500,
+							2000,
 							'Why dont you checkout our Shirts?',
-							1500,
+							2000,
 						]}
-						speed={50}
+						speed={40}
 						style={{ fontSize: '3rem', fontWeight: 'bold' }}
 						repeat={Infinity}
 					/>
