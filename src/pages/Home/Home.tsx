@@ -11,9 +11,9 @@ function Home() {
 						sequence={[
 							'Why dont you checkout our Jackets?',
 							2000,
-							'Why dont you checkout our Pants?',
-							2000,
 							'Why dont you checkout our Shoes?',
+							2000,
+							'Why dont you checkout our Pants?',
 							2000,
 							'Why dont you checkout our Shirts?',
 							2000,
