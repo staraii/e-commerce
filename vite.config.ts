@@ -13,6 +13,7 @@ export default defineConfig({
 			slices: "/src/slices",
 			store: "/src/store",
 			src: "/src",
+			types: "/src/types",
 			utils: "/src/utils",
 		},
 	},
