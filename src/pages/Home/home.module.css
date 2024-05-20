@@ -1,3 +1,68 @@
 .section {
-	
+	display: flex;
+	display: block;
+	margin-top: 5%;
+}
+
+.link {
+	color: var(--color);
+	padding: 1rem;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.asideSection {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--primary);
+	border-radius: 0.4rem;
+	width: 35%;
+	height: 80vh;
+}
+.asideSectionH2 {
+	display: flex;
+	justify-content: center;
+	border-bottom: var(--background) 1px solid;
+}
+
+.asideLink {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--primary);
+	border-bottom: var(--background) solid;
+	height: inherit;
+	color: var(--color);
+}
+
+.productSection {
+	margin: 2rem;
+	height: 60vh;
+}
+
+.productPics {
+	display: flex;
+	flex-wrap: wrap;
+	flex-grow: 1;
+	width: 100%;
+	height: 65%;
+	padding: none;
+	margin-top: 2rem;
+}
+
+.product {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: solid var(--secondary) 2px;
+	margin: 10px;
+	background-color: var(--background);
+	min-height: 80px;
+	min-width: 130px;
+	max-width: 300px;
 }

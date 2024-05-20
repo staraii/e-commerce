@@ -1,0 +1,31 @@
+.card {
+	border: 1px solid #eaeaea;
+	border-radius: 8px;
+	overflow: hidden;
+	width: 200px;
+	text-align: center;
+}
+
+.image {
+	width: 100%;
+	height: auto;
+}
+
+.info {
+	padding: 16px;
+}
+
+.title {
+	font-size: 18px;
+	margin: 8px 0;
+}
+
+.price {
+	font-size: 16px;
+	color: #666;
+}
+
+.description {
+	font-size: 14px;
+	color: #999;
+}
