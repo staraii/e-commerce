@@ -26,18 +26,6 @@ function Home() {
 						<Link className={styles.product} to='/cart'>
 							Bild på produkt
 						</Link>
-						<Link className={styles.product} to='/cart'>
-							Bild på produkt
-						</Link>
-						<Link className={styles.product} to='/cart'>
-							Bild på produkt
-						</Link>
-						<Link className={styles.product} to='/cart'>
-							Bild på produkt
-						</Link>
-						<Link className={styles.product} to='/cart'>
-							Bild på produkt
-						</Link>
 					</section>
 				</section>
 
