@@ -40,7 +40,6 @@ function Home() {
 						<Product />
 						<Product />
 						<Product />
-						<Product />
 					</section>
 				</section>
 
