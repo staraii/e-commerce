@@ -1,0 +1,40 @@
+.productContainer {
+	overflow: hidden;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	box-shadow: var(--box-shadow);
+	padding: 0.8rem;
+	border-radius: 0.5rem;
+	margin-right: 1rem;
+	margin: ;
+}
+
+.productContainer > img {
+	display: flex;
+	overflow: hidden;
+	object-fit: cover;
+	flex-grow: 1;
+	width: 200px;
+	height: 200px;
+	padding: none;
+	border-radius: 0.5rem;
+}
+
+.productContainer h1 {
+	max-width: 20ch;
+	font-size: 1rem;
+	text-align: center;
+	line-height: 1rem;
+}
+
+.productContainer p {
+	font-size: 1rem;
+	font-weight: 700;
+	color: rgb(112, 112, 112);
+}
+
+.loadingMessage {
+	color: red;
+}
