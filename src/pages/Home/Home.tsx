@@ -10,7 +10,7 @@ function Home() {
 	useEffect(() => {
 		// Funktion för att hämta produkter
 		const fetchData = async () => {
-			await GetProducts();
+			await GetProducts(3);
 		};
 
 		// Anropa funktionen
@@ -37,8 +37,6 @@ function Home() {
 						repeat={Infinity}
 					/>
 					<section className={styles.productPics}>
-						<Product />
-						<Product />
 						<Product />
 					</section>
 				</section>
