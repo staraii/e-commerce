@@ -60,9 +60,6 @@ const Cart: React.FC = () => {
         </p>
         <button className={styles.CheckoutBtn}>Checkout</button>
       </section>
-      <section className={styles.backSection}>
-        <Link to="/">Back to Homepage</Link>
-      </section>
     </>
   );
 };
