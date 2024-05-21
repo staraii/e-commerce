@@ -1,8 +1,22 @@
 import styles from './home.module.css';
 import { Link } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
+import { useEffect } from 'react';
+import GetProducts, {
+	Product,
+} from 'components/HomePageProducts/HomePageProducts';
 
 function Home() {
+	useEffect(() => {
+		// Funktion för att hämta produkter
+		const fetchData = async () => {
+			await GetProducts();
+		};
+
+		// Anropa funktionen
+		fetchData();
+	}, []);
+
 	return (
 		<section className={styles.section}>
 			<div className={styles.container}>
@@ -23,9 +37,10 @@ function Home() {
 						repeat={Infinity}
 					/>
 					<section className={styles.productPics}>
-						<Link className={styles.product} to='/cart'>
-							Bild på produkt
-						</Link>
+						<Product />
+						<Product />
+						<Product />
+						<Product />
 					</section>
 				</section>
 
