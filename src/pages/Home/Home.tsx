@@ -40,23 +40,22 @@ function Home() {
 						<Product />
 						<Product />
 						<Product />
-						<Product />
 					</section>
 				</section>
 
 				<aside className={styles.asideSection}>
-					<h2 className={styles.categorySectionH2}>Katergorier</h2>
+					<h2 className={styles.categorySectionH2}>Categories</h2>
 					<Link className={styles.asideLink} to='/cart'>
-						Skor
+						Shoes
 					</Link>
 					<Link className={styles.asideLink} to='/cart'>
-						Tröjor
+						Shirts
 					</Link>
 					<Link className={styles.asideLink} to='/cart'>
-						Byxor
+						Pants
 					</Link>
 					<Link className={styles.asideLink} to='/cart'>
-						Hattar
+						Head wear
 					</Link>
 				</aside>
 			</div>
