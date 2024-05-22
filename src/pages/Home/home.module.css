@@ -19,15 +19,15 @@
 .asideSection {
 	display: flex;
 	flex-direction: column;
+	text-align: center;
 	background-color: var(--primary);
 	border-radius: 0.4rem;
 	width: 35%;
 	height: 80vh;
 }
-.asideSectionH2 {
-	display: flex;
-	justify-content: center;
-	border-bottom: var(--background) 1px solid;
+
+.categorySectionH2 {
+	border-bottom: white solid 1px;
 }
 
 .asideLink {
@@ -35,7 +35,7 @@
 	justify-content: center;
 	align-items: center;
 	background-color: var(--primary);
-	border-bottom: var(--background) solid;
+	border-bottom: var(--background) solid 1px;
 	height: inherit;
 	color: var(--color);
 }

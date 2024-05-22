@@ -1,8 +1,22 @@
 import styles from './home.module.css';
 import { Link } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
+import { useEffect } from 'react';
+import GetProducts, {
+	Product,
+} from 'components/HomePageProducts/HomePageProducts';
 
 function Home() {
+	useEffect(() => {
+		// Funktion för att hämta produkter
+		const fetchData = async () => {
+			await GetProducts(3);
+		};
+
+		// Anropa funktionen
+		fetchData();
+	}, []);
+
 	return (
 		<section className={styles.section}>
 			<div className={styles.container}>
@@ -11,9 +25,9 @@ function Home() {
 						sequence={[
 							'Why dont you checkout our Jackets?',
 							2000,
-							'Why dont you checkout our Pants?',
-							2000,
 							'Why dont you checkout our Shoes?',
+							2000,
+							'Why dont you checkout our Pants?',
 							2000,
 							'Why dont you checkout our Shirts?',
 							2000,
@@ -23,37 +37,23 @@ function Home() {
 						repeat={Infinity}
 					/>
 					<section className={styles.productPics}>
-						<Link className={styles.product} to='/cart'>
-							Bild på produkt
-						</Link>
-						<Link className={styles.product} to='/cart'>
-							Bild på produkt
-						</Link>
-						<Link className={styles.product} to='/cart'>
-							Bild på produkt
-						</Link>
-						<Link className={styles.product} to='/cart'>
-							Bild på produkt
-						</Link>
-						<Link className={styles.product} to='/cart'>
-							Bild på produkt
-						</Link>
+						<Product />
 					</section>
 				</section>
 
 				<aside className={styles.asideSection}>
-					<h2 className={styles.categorySectionH2}>Katergorier</h2>
+					<h2 className={styles.categorySectionH2}>Categories</h2>
 					<Link className={styles.asideLink} to='/cart'>
-						Skor
+						Shoes
 					</Link>
 					<Link className={styles.asideLink} to='/cart'>
-						Tröjor
+						Shirts
 					</Link>
 					<Link className={styles.asideLink} to='/cart'>
-						Byxor
+						Pants
 					</Link>
 					<Link className={styles.asideLink} to='/cart'>
-						Hattar
+						Head wear
 					</Link>
 				</aside>
 			</div>

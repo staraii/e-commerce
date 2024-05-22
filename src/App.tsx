@@ -7,20 +7,26 @@ import Admin from 'pages/Admin/Admin';
 import './App.css';
 import Fotter from 'components/ReduxTest/fotter/fotter';
 import NavBar from 'components/NavBar/NavBar';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+// Create a client
+const queryClient = new QueryClient();
 
 function App() {
 	return (
 		<section>
-			<Router>
-				<NavBar />
-				<Routes>
-					<Route path='/' element={<Home />} />
-					<Route path='/products' element={<Products />} />
-					<Route path='/cart' element={<Cart />} />
-					<Route path='/admin' element={<Admin />} />
-					<Route path='/redux' element={<ReduxTest />} />
-				</Routes>
-			</Router>
+			<QueryClientProvider client={queryClient}>
+				<Router>
+					<NavBar />
+					<Routes>
+						<Route path='/' element={<Home />} />
+						<Route path='/products' element={<Products />} />
+						<Route path='/cart' element={<Cart />} />
+						<Route path='/admin' element={<Admin />} />
+						<Route path='/redux' element={<ReduxTest />} />
+					</Routes>
+				</Router>
+			</QueryClientProvider>
 			<Fotter />
 		</section>
 	);
