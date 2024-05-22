@@ -78,3 +78,19 @@
     flex-direction: column;
   }
 }
+
+@media (max-width: 400px) {
+  * {
+    transition: all 1s ease;
+  }
+  .social-media a {
+    font-size: 1.2rem;
+  }
+  .newsletter input[type="email"] {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .newsletter button {
+    width: 100%;
+  }
+}
