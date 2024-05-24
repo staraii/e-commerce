@@ -24,7 +24,6 @@ const GetProducts = async (limitNumber: number): Promise<Product[]> => {
 	querySnapshot.forEach((doc) => {
 		products.push({ id: doc.id, ...doc.data() } as Product);
 	});
-	console.log(products);
 	return products;
 };
 
