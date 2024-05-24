@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./fotter.module.css";
 
 const Footer: React.FC = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    openModal();
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles["footer-links"]}>
@@ -24,7 +39,7 @@ const Footer: React.FC = () => {
       </div>
       <div className={styles.newsletter}>
         <h3>Subscribe to our Newsletter</h3>
-        <form action="/subscribe" method="post">
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             name="email"
@@ -37,6 +52,16 @@ const Footer: React.FC = () => {
       <div className={styles.copyright}>
         <p>&copy; 2024 E-commerce Website. All rights reserved.</p>
       </div>
+
+      {modalIsOpen && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <h2>Subscription Successful</h2>
+            <p>You have successfully subscribed to our newsletter!</p>
+            <button onClick={closeModal}>Close</button>
+          </div>
+        </div>
+      )}
     </footer>
   );
 };
