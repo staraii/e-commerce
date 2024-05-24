@@ -10,10 +10,9 @@ function Home() {
 	useEffect(() => {
 		// Funktion för att hämta produkter
 		const fetchData = async () => {
-			await GetProducts(3);
+			await GetProducts(1);
 		};
 
-		// Anropa funktionen
 		fetchData();
 	}, []);
 
@@ -23,9 +22,9 @@ function Home() {
 				<section className={styles.productSection}>
 					<TypeAnimation
 						sequence={[
-							'Why dont you checkout our Jackets?',
-							2000,
 							'Why dont you checkout our Shoes?',
+							2000,
+							'Why dont you checkout our Caps?',
 							2000,
 							'Why dont you checkout our Pants?',
 							2000,

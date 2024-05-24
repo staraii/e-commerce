@@ -1,5 +1,6 @@
 .NavBar {
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
 	background-color: var(--primary);
 	padding: 1rem;
@@ -12,7 +13,42 @@
 	 */
 }
 
+.wraper {
+	display: flex;
+	justify-content: end;
+}
+
 .link {
 	color: var(--color);
 	padding: 1rem;
+}
+
+.linkCategories {
+	color: black;
+	padding: 1rem;
+	padding-left: 0;
+}
+
+.navDropdown {
+	width: 100.02%;
+	margin-top: -0.35rem;
+	background-color: var(--primary);
+	border-bottom-right-radius: 0.4rem;
+	border-bottom-left-radius: 0.4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	max-height: 0;
+	overflow: hidden;
+}
+
+.linkCategories:hover .navDropdown {
+	max-height: fit-content;
+}
+
+.linkDropdown {
+	display: flex;
+	padding: 1rem;
+	color: white;
+	width: fit-content;
 }

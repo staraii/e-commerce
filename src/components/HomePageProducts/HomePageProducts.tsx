@@ -24,6 +24,7 @@ const GetProducts = async (limitNumber: number): Promise<Product[]> => {
 	querySnapshot.forEach((doc) => {
 		products.push({ id: doc.id, ...doc.data() } as Product);
 	});
+	console.log(products);
 	return products;
 };
 
@@ -42,7 +43,6 @@ export const Product = () => {
 	if (isLoading) return <div className={styles.loadingMessage}>Loading...</div>;
 	if (error) return <div>Error: {error.message}</div>;
 	if (!data) return <div>No product found</div>;
-	//TODO Lägg till en kontroll för undefined data
 
 	return (
 		<div className={styles.wraper}>
