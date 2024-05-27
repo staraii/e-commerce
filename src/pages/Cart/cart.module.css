@@ -70,6 +70,7 @@
   background-color: var(--secondary);
   color: var(--background);
   padding: 0.6rem;
+  font-size: 1.3rem;
   margin: 1.3rem 0 -1rem 0;
 }
 .CheckoutBtn {
@@ -93,7 +94,13 @@
   padding: 0.3rem;
 }
 
+.cartQuantity > p {
+  margin-left: 3rem;
+}
 .cartQuantity {
+  display: flex;
+  flex-wrap: wrap;
+  letter-spacing: 0.1rem;
   font-size: 1.4rem;
   color: var(--background);
 }

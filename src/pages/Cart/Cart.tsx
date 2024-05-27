@@ -50,11 +50,27 @@ const Cart: React.FC = () => {
     dispatch(removeItem(id));
   };
 
+  const totalAmount = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
   return (
     <>
       <div className={styles.bg_Welcome}>
         <h1 className={styles.H_One}>Welcome to Cart!</h1>
-        <p className={styles.cartQuantity}>{cartItems.length} pcs</p>
+        <p className={styles.cartQuantity}>
+          <p className={styles.totalAmount}>
+            Total Amount: ${totalAmount.toFixed(2)}
+          </p>
+          <p className={styles.totalQuantity}>
+            Total Quantity: {totalQuantity} items
+          </p>
+        </p>
       </div>
       <section className={styles.section}>
         {cartItems.map((item: CartItem) => (
