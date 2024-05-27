@@ -1,7 +1,10 @@
 .wraper {
 	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
 	justify-content: center;
-	margin-left: 5rem;
+	gap: 1.5rem;
+	padding-bottom: 2rem;
 }
 
 .productContainer {
@@ -13,17 +16,17 @@
 	box-shadow: var(--box-shadow);
 	padding: 0.8rem;
 	border-radius: 0.5rem;
-	margin-right: 2rem;
 }
 
 .productContainer > img {
 	display: flex;
 	overflow: hidden;
-	object-fit: cover;
 	flex-grow: 1;
 	width: 200px;
 	height: 200px;
+	object-fit: cover;
 	padding: none;
+	margin-block: 0.5rem;
 	border-radius: 0.5rem;
 }
 
@@ -38,8 +41,4 @@
 	font-size: 1rem;
 	font-weight: 700;
 	color: rgb(112, 112, 112);
-}
-
-.loadingMessage {
-	color: red;
 }

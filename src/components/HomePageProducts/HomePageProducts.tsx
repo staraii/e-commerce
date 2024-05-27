@@ -29,7 +29,7 @@ const GetProducts = async (limitNumber: number): Promise<Product[]> => {
 
 //Hämtar produkterna
 const fetchProduct = async (): Promise<Product[]> => {
-	const product = await GetProducts(3);
+	const product = await GetProducts(5);
 	return product;
 };
 
@@ -42,7 +42,6 @@ export const Product = () => {
 	if (isLoading) return <div className={styles.loadingMessage}>Loading...</div>;
 	if (error) return <div>Error: {error.message}</div>;
 	if (!data) return <div>No product found</div>;
-	//TODO Lägg till en kontroll för undefined data
 
 	return (
 		<div className={styles.wraper}>
