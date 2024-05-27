@@ -29,7 +29,7 @@ const GetProducts = async (limitNumber: number): Promise<Product[]> => {
 
 //Hämtar produkterna
 const fetchProduct = async (): Promise<Product[]> => {
-	const product = await GetProducts(3);
+	const product = await GetProducts(5);
 	return product;
 };
 
