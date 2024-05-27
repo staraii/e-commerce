@@ -1,56 +1,86 @@
+// src/pages/Cart/Cart.tsx
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import { RootState } from "../../store/store";
+import { useState } from "react";
 import {
   removeItem,
   incrementItem,
   decrementItem,
+  clearCart,
 } from "../../slices/cartSlice";
 import styles from "./cart.module.css";
 import { Link } from "react-router-dom";
 
 interface CartItem {
-  productName: string;
-  productId: ProductId;
+  id: string;
+  name: string;
   price: number;
+  size: string;
   quantity: number;
 }
 
-type ProductId = string;
-
 const Cart: React.FC = () => {
-  const cartItems = useSelector((state: any) => state.cart.items);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const handleCheckout = () => {
+    openModal();
+  };
+
+  const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
 
-  const handleIncrement = (productId: ProductId) => {
-    dispatch(incrementItem(productId));
+  const handleIncrement = (id: string) => {
+    dispatch(incrementItem(id));
   };
 
-  const handleDecrement = (productId: ProductId) => {
-    dispatch(decrementItem(productId));
+  const handleDecrement = (id: string) => {
+    dispatch(decrementItem(id));
   };
 
-  const handleRemove = (productId: ProductId) => {
-    dispatch(removeItem(productId));
+  const handleRemove = (id: string) => {
+    dispatch(removeItem(id));
   };
 
   return (
     <>
       <div className={styles.bg_Welcome}>
         <h1 className={styles.H_One}>Welcome to Cart!</h1>
-        <p>
-          <p className={styles.cartQuantity}>{cartItems.length} pcs</p>
-        </p>
-      </div>{" "}
+        <p className={styles.cartQuantity}>{cartItems.length} pcs</p>
+      </div>
       <section className={styles.section}>
         {cartItems.map((item: CartItem) => (
-          <div className={styles.item} key={item.productId}>
-            <h3>{item.productName}</h3>
+          <div className={styles.item} key={item.id}>
+            <h3>{item.name}</h3>
             <p>Price: ${item.price}</p>
+            <p>Size: {item.size}</p>
             <p>Quantity: {item.quantity}</p>
-            <button onClick={() => handleIncrement(item.productId)}>+</button>
-            <button onClick={() => handleDecrement(item.productId)}>-</button>
-            <button onClick={() => handleRemove(item.productId)}>Remove</button>
+            <button
+              className={styles.CartBtn}
+              onClick={() => handleIncrement(item.id)}
+            >
+              +
+            </button>
+            <button
+              className={styles.CartBtn}
+              onClick={() => handleDecrement(item.id)}
+            >
+              -
+            </button>
+            <button
+              className={styles.CartBtn}
+              onClick={() => handleRemove(item.id)}
+            >
+              Remove
+            </button>
           </div>
         ))}
       </section>
@@ -58,7 +88,25 @@ const Cart: React.FC = () => {
         <p className={styles.paragraph}>
           Click the button below to proceed to checkout.
         </p>
-        <button className={styles.CheckoutBtn}>Checkout</button>
+        <button className={styles.CheckoutBtn} onClick={() => handleCheckout()}>
+          Checkout
+        </button>
+        <button
+          className={styles.CartClearBtn}
+          onClick={() => dispatch(clearCart())}
+        >
+          Clear cart
+        </button>
+
+        {modalIsOpen && (
+          <div className={styles.modalOverlay}>
+            <div className={styles.modalContent}>
+              <h2>Your order has been received</h2>
+              <p>We look forward to serving you again soon!</p>
+              <button onClick={closeModal}>Close</button>
+            </div>
+          </div>
+        )}
       </section>
     </>
   );
