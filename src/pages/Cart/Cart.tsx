@@ -2,6 +2,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
+import { useState } from "react";
 import {
   removeItem,
   incrementItem,
@@ -20,6 +21,20 @@ interface CartItem {
 }
 
 const Cart: React.FC = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const handleCheckout = () => {
+    openModal();
+  };
+
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
 
@@ -48,9 +63,24 @@ const Cart: React.FC = () => {
             <p>Price: ${item.price}</p>
             <p>Size: {item.size}</p>
             <p>Quantity: {item.quantity}</p>
-            <button onClick={() => handleIncrement(item.id)}>+</button>
-            <button onClick={() => handleDecrement(item.id)}>-</button>
-            <button onClick={() => handleRemove(item.id)}>Remove</button>
+            <button
+              className={styles.CartBtn}
+              onClick={() => handleIncrement(item.id)}
+            >
+              +
+            </button>
+            <button
+              className={styles.CartBtn}
+              onClick={() => handleDecrement(item.id)}
+            >
+              -
+            </button>
+            <button
+              className={styles.CartBtn}
+              onClick={() => handleRemove(item.id)}
+            >
+              Remove
+            </button>
           </div>
         ))}
       </section>
@@ -58,8 +88,25 @@ const Cart: React.FC = () => {
         <p className={styles.paragraph}>
           Click the button below to proceed to checkout.
         </p>
-        <button className={styles.CheckoutBtn}>Checkout</button>
-        <button onClick={() => dispatch(clearCart())}>Clear cart</button>
+        <button className={styles.CheckoutBtn} onClick={() => handleCheckout()}>
+          Checkout
+        </button>
+        <button
+          className={styles.CartClearBtn}
+          onClick={() => dispatch(clearCart())}
+        >
+          Clear cart
+        </button>
+
+        {modalIsOpen && (
+          <div className={styles.modalOverlay}>
+            <div className={styles.modalContent}>
+              <h2>Your order has been received</h2>
+              <p>We look forward to serving you again soon!</p>
+              <button onClick={closeModal}>Close</button>
+            </div>
+          </div>
+        )}
       </section>
     </>
   );
