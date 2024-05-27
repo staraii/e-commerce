@@ -5,12 +5,7 @@
 	background-color: var(--primary);
 	padding: 1rem;
 	border-radius: 0.4rem;
-	/* margin-bottom: 1rem; */
-	/* position: fixed;
-	top: 0;
 	width: 100%;
-	overflow: hidden;
-	 */
 }
 
 .wraper {
@@ -30,20 +25,23 @@
 }
 
 .navDropdown {
-	width: 100.02%;
-	margin-top: -0.35rem;
+	width: 15vw;
 	background-color: var(--primary);
 	border-bottom-right-radius: 0.4rem;
 	border-bottom-left-radius: 0.4rem;
 	display: flex;
 	flex-direction: column;
 	align-items: end;
-	max-height: 0;
 	overflow: hidden;
+	position: absolute;
+	top: 6;
+	right: 0;
+	z-index: 10;
+	margin: 0.4rem;
 }
 
 .linkCategories:hover .navDropdown {
-	max-height: fit-content;
+	max-height: max-content;
 }
 
 .linkDropdown {
@@ -51,4 +49,16 @@
 	padding: 1rem;
 	color: white;
 	width: fit-content;
+}
+
+@media screen and (max-width: 768px) {
+	.navDropdown {
+		width: 20vw;
+	}
+}
+
+@media (max-width: 400px) {
+	.wraper {
+		margin: 0 auto;
+	}
 }

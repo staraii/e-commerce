@@ -1,5 +1,4 @@
 import styles from './home.module.css';
-import { Link } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
 import { useEffect } from 'react';
 import GetProducts, {
@@ -21,6 +20,7 @@ function Home() {
 			<div className={styles.container}>
 				<section className={styles.productSection}>
 					<TypeAnimation
+						className={styles.typedText}
 						sequence={[
 							'Why dont you checkout our Shoes?',
 							2000,
@@ -32,29 +32,12 @@ function Home() {
 							2000,
 						]}
 						speed={40}
-						style={{ fontSize: '3rem', fontWeight: 'bold' }}
 						repeat={Infinity}
 					/>
 					<section className={styles.productPics}>
 						<Product />
 					</section>
 				</section>
-
-				<aside className={styles.asideSection}>
-					<h2 className={styles.categorySectionH2}>Categories</h2>
-					<Link className={styles.asideLink} to='/cart'>
-						Shoes
-					</Link>
-					<Link className={styles.asideLink} to='/cart'>
-						Shirts
-					</Link>
-					<Link className={styles.asideLink} to='/cart'>
-						Pants
-					</Link>
-					<Link className={styles.asideLink} to='/cart'>
-						Head wear
-					</Link>
-				</aside>
 			</div>
 		</section>
 	);
