@@ -13,6 +13,7 @@
     "@firebase/firestore-types": "^3.0.2",
     "@reduxjs/toolkit": "^2.2.4",
     "@types/react-toastify": "^4.1.0",
+    "@tanstack/react-query": "^5.37.1",
     "firebase": "^10.11.1",
     "firebase-admin": "^12.1.0",
     "react": "^18.2.0",
