@@ -4,6 +4,7 @@
   background-color: var(--secondary);
   border-radius: 0.4rem;
   overflow: auto;
+  box-shadow: var(--box-shadow);
 }
 
 .item:nth-child(even) {
@@ -71,7 +72,8 @@
   color: var(--background);
   padding: 0.6rem;
   font-size: 1.3rem;
-  margin: 1.3rem 0 -1rem 0;
+  margin: 1.5rem 0 -1rem 0;
+  box-shadow: var(--box-shadow);
 }
 .CheckoutBtn {
   font-size: 1.4rem;
@@ -157,4 +159,48 @@
 
 .modalContent button:hover {
   background-color: #0056b3;
+}
+
+.checkoutForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-color: var(--secondary);
+  border-radius: 0.4rem;
+  color: var(--background);
+  font-weight: 700;
+  margin-top: 0.4rem;
+  padding: 0.4rem;
+  box-shadow: var(--box-shadow);
+}
+
+.formGroup > input {
+  padding: 0.2rem;
+  border-radius: 0.4rem;
+  outline: none;
+  border: none;
+}
+
+.formGroup > label {
+  margin-inline: 0.1rem;
+}
+
+.checkoutForm > h3 {
+  font-size: 1rem;
+  text-align: center;
+  color: var(--text);
+}
+
+@media screen and (max-width: 700px) {
+  .checkoutForm {
+    padding: 0.4rem;
+  }
+  .formGroup {
+    width: 100%;
+  }
+  .formGroup > input {
+    width: -webkit-fill-available;
+  }
 }
