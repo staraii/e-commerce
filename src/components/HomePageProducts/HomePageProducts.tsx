@@ -2,18 +2,15 @@ import { collection, getDocs, limit, query } from 'firebase/firestore';
 import { db } from 'services/firebase';
 import { useQuery } from '@tanstack/react-query';
 import styles from './HPP.module.css';
+import ProductCard from 'components/productcard/ProductCard';
 
-interface Product {
+export interface Product {
 	id: string;
 	name: string;
 	price: number;
 	description: string;
 	category: string;
 	images: string;
-	rating: {
-		rate: string;
-		count: string;
-	};
 }
 
 //Hämtar de 3 första produkterna från db
@@ -29,7 +26,7 @@ const GetProducts = async (limitNumber: number): Promise<Product[]> => {
 
 //Hämtar produkterna
 const fetchProduct = async (): Promise<Product[]> => {
-	const product = await GetProducts(5);
+	const product = await GetProducts(4);
 	return product;
 };
 
@@ -46,11 +43,7 @@ export const Product = () => {
 	return (
 		<div className={styles.wraper}>
 			{data.map((product) => (
-				<div key={product.id} className={styles.productContainer}>
-					<h1>{product.name}</h1>
-					<img src={product.images} alt={product.name} />
-					<p>Price: ${product.price}</p>
-				</div>
+				<ProductCard key={product.id} product={product} />
 			))}
 		</div>
 	);

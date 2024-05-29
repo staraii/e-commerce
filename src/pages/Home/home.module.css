@@ -1,8 +1,8 @@
 .section {
 	display: flex;
-	margin-top: 5%;
 	height: fit-content;
 	margin: 0 auto;
+	justify-content: center;
 }
 
 .typedText {
@@ -53,8 +53,8 @@
 .productSection {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	margin-top: 2rem;
 }
 
 .productPics {

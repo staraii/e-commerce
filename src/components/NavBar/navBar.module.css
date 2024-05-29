@@ -1,20 +1,26 @@
 .NavBar {
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	flex-direction: row;
 	background-color: var(--primary);
 	padding: 1rem;
 	border-radius: 0.4rem;
 	width: 100%;
 }
 
+.NavBar h3 {
+	color: var(--background);
+	margin-right: auto;
+}
+
 .wraper {
 	display: flex;
-	justify-content: end;
+	align-items: center;
+	justify-content: right;
+	width: 100%;
 }
 
 .link {
-	color: var(--color);
+	color: var(--background);
 	padding: 1rem;
 }
 
@@ -22,33 +28,6 @@
 	color: black;
 	padding: 1rem;
 	padding-left: 0;
-}
-
-.navDropdown {
-	width: 15vw;
-	background-color: var(--primary);
-	border-bottom-right-radius: 0.4rem;
-	border-bottom-left-radius: 0.4rem;
-	display: flex;
-	flex-direction: column;
-	align-items: end;
-	overflow: hidden;
-	position: absolute;
-	top: 6;
-	right: 0;
-	z-index: 10;
-	margin: 0.4rem;
-}
-
-.linkCategories:hover .navDropdown {
-	max-height: max-content;
-}
-
-.linkDropdown {
-	display: flex;
-	padding: 1rem;
-	color: white;
-	width: fit-content;
 }
 
 @media screen and (max-width: 768px) {
