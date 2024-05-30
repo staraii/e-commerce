@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./fotter.module.css";
+import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -26,16 +27,19 @@ const Footer: React.FC = () => {
         <a href="/returns">Return Policy</a>
         <a href="/faq">FAQs</a>
         <a href="/privacy">Privacy Policy</a>
+        <Link className={styles.link} to="/admin">
+          Admin
+        </Link>
       </div>
       <div className={styles["contact-info"]}>
         <p>123 Main Street, City, Country</p>
         <p>Phone: 123-456-7890</p>
-        <p>Email: info@example.com</p>
+        <p>Email: info@SKJN_Store.com</p>
       </div>
       <div className={styles["social-media"]}>
-        <a href="https://www.facebook.com/example">Facebook</a>
-        <a href="https://twitter.com/example">Twitter</a>
-        <a href="https://www.instagram.com/example">Instagram</a>
+        <a href="https://www.facebook.com/SKJN Store">Facebook</a>
+        <a href="https://twitter.com/SKJN Store">Twitter</a>
+        <a href="https://www.instagram.com/SKJN Store">Instagram</a>
       </div>
       <div className={styles.newsletter}>
         <h3>Subscribe to our Newsletter</h3>
@@ -50,7 +54,7 @@ const Footer: React.FC = () => {
         </form>
       </div>
       <div className={styles.copyright}>
-        <p>&copy; 2024 E-commerce Website. All rights reserved.</p>
+        <p>&copy; 2024 E-commerce Website SKJN Store. All rights reserved.</p>
       </div>
 
       {modalIsOpen && (
