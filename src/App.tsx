@@ -19,11 +19,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Create a client
 const queryClient = new QueryClient();
-        
+
 function App() {
 	return (
 		<>
-      <QueryClientProvider client={queryClient}>
+		<QueryClientProvider client={queryClient}>
 			<ToastContainer />
 			<Router>
 				<Routes>
@@ -50,13 +50,10 @@ function App() {
 					</Route>
 				</Routes>
 			</Router>
-     </QueryClientProvider>
+		</QueryClientProvider>
 		</>
 	);
 }    
 export default App;
-        
-        
-        
 
 
