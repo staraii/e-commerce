@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./fotter.module.css";
+import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -26,6 +27,9 @@ const Footer: React.FC = () => {
         <a href="/returns">Return Policy</a>
         <a href="/faq">FAQs</a>
         <a href="/privacy">Privacy Policy</a>
+        <Link className={styles.link} to="/admin">
+          Admin
+        </Link>
       </div>
       <div className={styles["contact-info"]}>
         <p>123 Main Street, City, Country</p>
