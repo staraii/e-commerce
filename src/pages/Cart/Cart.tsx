@@ -62,6 +62,7 @@ const Cart: React.FC = () => {
 
   return (
     <>
+      <h1 className={styles.HiddenLogo}>SKJN Store</h1>
       <div className={styles.bg_Welcome}>
         <h1 className={styles.H_One}>Welcome to Cart!</h1>
         <p className={styles.cartQuantity}>

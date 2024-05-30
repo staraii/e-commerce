@@ -204,3 +204,17 @@
     width: -webkit-fill-available;
   }
 }
+
+.HiddenLogo {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .HiddenLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    margin-top: 0.6rem;
+  }
+}

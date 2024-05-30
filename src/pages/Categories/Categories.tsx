@@ -55,6 +55,7 @@ const Categories = () => {
 
 	return (
 		<div>
+			<h1 className={styles.HiddenLogo}>SKJN Store</h1>
 			<div className={styles.wraper}>
 				{productsToDisplay.map((product) => (
 					<div className={styles.imageCard} key={product.id}>
