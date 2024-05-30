@@ -26,12 +26,6 @@ export const GetProducts = async (): Promise<Product[]> => {
 	return products;
 };
 
-// Hämta produkterna
-const fetchProduct = async (): Promise<Product[]> => {
-	const product = await GetProducts();
-	return product;
-};
-
 const groupByCategory = (products: Product[]): { [key: string]: Product } => {
 	return products.reduce((acc, product) => {
 		if (!acc[product.category]) {
@@ -42,6 +36,12 @@ const groupByCategory = (products: Product[]): { [key: string]: Product } => {
 };
 
 const Categories = () => {
+	// Hämta produkterna
+	const fetchProduct = async (): Promise<Product[]> => {
+		const product = await GetProducts();
+		return product;
+	};
+
 	const { data, error, isLoading } = useQuery<Product[]>({
 		queryKey: ['product'],
 		queryFn: fetchProduct,

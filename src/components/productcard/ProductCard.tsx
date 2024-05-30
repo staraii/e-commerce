@@ -5,11 +5,14 @@ import { addItem } from 'slices/cartSlice';
 import styles from './ProductCard.module.css';
 
 interface Product {
+	brand: string;
+	category: string;
+	description: string;
+	gender: string;
 	id: string;
+	images: string[];
 	name: string;
 	price: number;
-	description: string;
-	images: string;
 }
 
 const ProductCard = ({ product }: { product: Product }) => {
@@ -40,7 +43,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 
 	return (
 		<div className={styles['product-card']}>
-			<img src={product.images} alt={product.name} />
+			<img src={product.images[0]} alt={product.name} />
 			<div className={styles['product-info']}>
 				<h1>{product.name}</h1>
 				<p>{product.price}$</p>

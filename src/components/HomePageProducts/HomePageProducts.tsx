@@ -4,13 +4,15 @@ import { useQuery } from '@tanstack/react-query';
 import styles from './HPP.module.css';
 import ProductCard from 'components/productcard/ProductCard';
 
-export interface Product {
+interface Product {
+	brand: string;
+	category: string;
+	description: string;
+	gender: string;
 	id: string;
+	images: string[];
 	name: string;
 	price: number;
-	description: string;
-	category: string;
-	images: string;
 }
 
 //Hämtar de 3 första produkterna från db
@@ -24,13 +26,13 @@ const GetProducts = async (limitNumber: number): Promise<Product[]> => {
 	return products;
 };
 
-//Hämtar produkterna
-const fetchProduct = async (): Promise<Product[]> => {
-	const product = await GetProducts(4);
-	return product;
-};
-
 export const Product = () => {
+	//Hämtar produkterna
+	const fetchProduct = async (): Promise<Product[]> => {
+		const product = await GetProducts(4);
+		return product;
+	};
+
 	const { data, error, isLoading } = useQuery<Product[]>({
 		queryKey: ['product'],
 		queryFn: fetchProduct,
