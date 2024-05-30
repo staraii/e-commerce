@@ -84,8 +84,22 @@
   }
 }
 
+.HiddenLogo {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .HiddenLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    margin-top: 1rem;
+  }
+}
+
 @media (max-width: 400px) {
   .typedText {
-    font-size: 1.2rem;
+    font-size: 1.24rem;
   }
 }

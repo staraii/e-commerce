@@ -21,11 +21,14 @@ const Products = () => {
   }, []);
 
   return (
-    <div className={styles.wraper}>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <>
+      <h1 className={styles.HiddenLogo}>SKJN Store</h1>
+      <div className={styles.wraper}>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </>
   );
 };
 

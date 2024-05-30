@@ -39,10 +39,20 @@
 @media (max-width: 400px) {
   .wraper {
     margin: 0 auto;
+    justify-content: center;
   }
 }
 @media (max-width: 620px) {
+  .wraper {
+    justify-content: center;
+  }
   h3 {
     display: none;
+  }
+  .NavBar {
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
   }
 }
