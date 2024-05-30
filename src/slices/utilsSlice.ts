@@ -47,37 +47,43 @@ interface SetShoeSize {
 
 
 const initialState: UtilsState = {
-	"genders": ["Mens", "Womens", "Unisex"],
-	"categories": [
+	genders: ["Mens", "Womens", "Unisex"],
+	categories: [
 		"Bags",
+		"Dresses",
 		"Hats",
 		"Hoodies",
+		"Jackets",
 		"Pants",
 		"Shirts",
 		"Shoes",
 		"Shorts",
 		"Skirts",
+		"Sweaters",
 		"Sweatshirts",
 		"T-Shirts",
 	],
-	"sizes": {
-		"Accessories": {
-			"Bags": ["oneSize"],
-			"Hats": ["oneSize"],
+	sizes: {
+		Accessories: {
+			Bags: ["oneSize"],
+			Hats: ["oneSize"],
 		},
-		"Clothes": {
-			"Hoodies": ["xs", "s", "m", "l", "xl", "xxl"],
-			"Pants": ["xs", "s", "m", "l", "xl", "xxl"],
-			"Shirts": ["xs", "s", "m", "l", "xl", "xxl"],
-			"Shorts": ["xs", "s", "m", "l", "xl", "xxl"],
-			"Skirts": ["xs", "s", "m", "l", "xl", "xxl"],
-			"Sweatshirts": ["xs", "s", "m", "l", "xl", "xxl"],
+		Clothes: {
+			Dresses: ["xs", "s", "m", "l", "xl", "xxl"],
+			Hoodies: ["xs", "s", "m", "l", "xl", "xxl"],
+			Jackets: ["xs", "s", "m", "l", "xl", "xxl"],
+			Pants: ["xs", "s", "m", "l", "xl", "xxl"],
+			Shirts: ["xs", "s", "m", "l", "xl", "xxl"],
+			Shorts: ["xs", "s", "m", "l", "xl", "xxl"],
+			Skirts: ["xs", "s", "m", "l", "xl", "xxl"],
+			Sweaters: ["xs", "s", "m", "l", "xl", "xxl"],
+			Sweatshirts: ["xs", "s", "m", "l", "xl", "xxl"],
 			"T-Shirts": ["xs", "s", "m", "l", "xl", "xxl"],
 		},
-		"Shoes": {
-			"Mens": ["39", "40", "41", "42", "43", "44", "45", "46"],
-			"Womens": ["35", "36", "37", "38", "39", "40", "41", "42"],
-			"Unisex": [
+		Shoes: {
+			Mens: ["39", "40", "41", "42", "43", "44", "45", "46"],
+			Womens: ["35", "36", "37", "38", "39", "40", "41", "42"],
+			Unisex: [
 				"35",
 				"36",
 				"37",
@@ -92,7 +98,6 @@ const initialState: UtilsState = {
 				"46",
 			],
 		},
-		
 	},
 };
 

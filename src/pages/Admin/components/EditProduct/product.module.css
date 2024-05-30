@@ -40,5 +40,15 @@
 	width: 60%;
 	max-width: 30rem;
 	background-color: var(--secondary);
+	border: 1px solid #000000;
 }
-
+.deleteButton {
+	margin-block: 2rem;
+	font-size: 1.3rem;
+	padding-inline: 1rem;
+	padding-block: 0.75rem;
+	width: 60%;
+	max-width: 30rem;
+	background-color: rgb(255, 199, 199);
+	border: 1px solid #000000;
+}

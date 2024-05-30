@@ -1,5 +1,5 @@
 import styles from "./new-product.module.css";
-import EditProduct from "../../components/Product/Product";
+import EditProduct from "../../components/EditProduct/EditProduct";
 
 function NewProduct() {
 	return (
@@ -10,4 +10,4 @@ function NewProduct() {
 	);
 }
 
-export default NewProduct
+export default NewProduct;

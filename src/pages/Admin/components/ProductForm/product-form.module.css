@@ -39,7 +39,7 @@
 	margin-bottom: 3rem;
 }
 .sizeLabels {
-
+	text-transform: uppercase;
 	width: 50%;
 }
 

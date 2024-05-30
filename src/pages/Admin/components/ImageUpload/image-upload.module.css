@@ -12,6 +12,10 @@
 	margin-block: 1rem;
 	padding-inline: 2rem;
 }
+.pUploadDirections {
+	margin-inline: 1rem;
+	font-size: 0.8rem;
+}
 .fileInput {
 	margin-top: 1rem;
 	padding-inline: 0.5rem;
