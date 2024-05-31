@@ -18,20 +18,19 @@ interface ImageUploadProps {
 // Bestämmer max antal bilder som kan laddas upp
 const MAX_UPLOAD_COUNT = 5 as const;
 
-function ImageUpload2({ images, setImages, imagesToDelete, setImagesToDelete, fileLimit, setFileLimit }: ImageUploadProps) {
+function ImageUpload({ images, setImages, imagesToDelete, setImagesToDelete, fileLimit, setFileLimit }: ImageUploadProps) {
 	// Tar bort redan sparade bilder
 	const deleteImage = (index: number) => {
 		// Väljer aktuell bild från listan med bilder
 		const imageUrl = images[index];
 		// Kontrollerar att valt index inte är en fil, utan en sträng
-		if (imageUrl instanceof File) {
-			return;
+		if (!(imageUrl instanceof File)) {
+			setImagesToDelete([...imagesToDelete, imageUrl]);
 		}
 		setFileLimit(false);
 		// Uppdaterar listan med bilder med den valda bilden borttagen
 		setImages(images.filter((_, i) => i !== index));
 		// Lägger till den valda bilden till listan med bilder som ska tas bort från storage om dokumentet sparas
-		setImagesToDelete([...imagesToDelete, imageUrl]);
 	}
 	// Tar bort bilder som nyligen laddats upp men ej sparats till storage
 	const deleteUploadedImage = (index: number, objUrl: string) => {
@@ -112,4 +111,4 @@ function ImageUpload2({ images, setImages, imagesToDelete, setImagesToDelete, fi
 	
 }
 
-export default ImageUpload2;
+export default ImageUpload;

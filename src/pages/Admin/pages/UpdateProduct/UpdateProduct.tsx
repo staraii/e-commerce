@@ -6,9 +6,11 @@ import { useAppSelector } from "hooks/reduxHooks";
 import { RootState } from "store/store";
 import EditProduct from "pages/Admin/components/EditProduct/EditProduct";
 import styles from "./update-product.module.css";
+import { Navigate } from "react-router-dom";
 
 
 function UpdateProduct() {
+	const isAdmin = useAppSelector((state) => state.user.isAdmin);
 	const memoCategories = useMemo(
 		() => (state: RootState) => state.utils.categories,
 		[]
@@ -91,6 +93,9 @@ function UpdateProduct() {
 		});
 		return () => unsubscribe();
 	}, [])
+	if (!isAdmin) {
+		return (<Navigate to="/admin/login" />)
+	}
 	return (
 		<section>
 			<h4 className={styles.h4}>Update Product</h4>

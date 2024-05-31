@@ -96,7 +96,7 @@ export interface SaveProduct {
 	name: string;
 	description: string;
 	brand: string;
-	price: string;
+	price: number;
 	category: string;
 	gender: string;
 	stock: StockSizesType;
