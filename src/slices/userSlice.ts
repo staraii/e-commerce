@@ -3,34 +3,29 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 
 interface UserState {
-	username: string;
-	userId: string;
-	isLoggedIn: boolean;
+	isAdmin: boolean;
+	email: string;
 }
 
 const initialState: UserState = {
-	username: "",
-	userId: "",
-	isLoggedIn: false,
+	isAdmin: false,
+	email: ""
 };
 
 export const userSlice = createSlice({
 	name: "user",
 	initialState,
 	reducers: {
-		setUsername: (state, action: PayloadAction<string>) => {
-			state.username = action.payload;
+		setAdmin: (state, action: PayloadAction<boolean>) => {
+			state.isAdmin = action.payload;
 		},
-		setUserId: (state, action: PayloadAction<string>) => {
-			state.userId = action.payload;
-		},
-		setIsLoggdeIn: (state) => {
-			state.isLoggedIn = !state.isLoggedIn;
+		signOut: (state) => {
+			state.isAdmin = false;
 		},
 	},
 });
 
-export const { setUsername, setUserId, setIsLoggdeIn } =
+export const { setAdmin, signOut } =
 	userSlice.actions;
 
 

@@ -1,8 +1,6 @@
-// src/pages/Cart/Cart.tsx
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
-import { useState } from "react";
 import {
   removeItem,
   incrementItem,
@@ -22,6 +20,9 @@ interface CartItem {
 
 const Cart: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -61,6 +62,7 @@ const Cart: React.FC = () => {
 
   return (
     <>
+      <h1 className={styles.HiddenLogo}>SKJN Store</h1>
       <div className={styles.bg_Welcome}>
         <h1 className={styles.H_One}>Welcome to Cart!</h1>
         <p className={styles.cartQuantity}>
@@ -101,12 +103,47 @@ const Cart: React.FC = () => {
         ))}
       </section>
       <section className={styles.purchaseSection}>
-        <p className={styles.paragraph}>
-          Click the button below to proceed to checkout.
-        </p>
-        <button className={styles.CheckoutBtn} onClick={() => handleCheckout()}>
-          Checkout
-        </button>
+        <form
+          className={styles.checkoutForm}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleCheckout();
+          }}
+        >
+          <div className={styles.formGroup}>
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="phone">Phone:</label>
+            <input
+              type="tel"
+              id="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div>
+          <button className={styles.CheckoutBtn} type="submit">
+            Checkout
+          </button>
+        </form>
         <button
           className={styles.CartClearBtn}
           onClick={() => dispatch(clearCart())}
@@ -117,7 +154,8 @@ const Cart: React.FC = () => {
         {modalIsOpen && (
           <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>
-              <h2>Your order has been received</h2>
+              <h2>Thank you, {name}!</h2>
+              <p>Your order has been received.</p>
               <p>We look forward to serving you again soon!</p>
               <button onClick={closeModal}>Close</button>
             </div>

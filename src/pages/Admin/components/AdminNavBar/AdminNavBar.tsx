@@ -3,11 +3,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useClickOutside } from "hooks/useClickOutside";
 
+
 function AdminNavBar() {
 	const [openMenu, setOpenMenu] = useState<boolean>(false);
+
 	const ref = useClickOutside(() => {
-		setOpenMenu(false);
-	})
+	setOpenMenu(false);
+	});
 	return (
 		<nav className={styles.nav}>
 			<div ref={ref} className={styles.menuDiv}>
@@ -66,10 +68,29 @@ function AdminNavBar() {
 							onClick={() => setOpenMenu(false)}
 						>
 							<Link
+								to="/admin/orders"
+								className={styles.menuLink}
+							>
+								Orders
+							</Link>
+						</li>
+						<li
+							className={styles.menuItems}
+							onClick={() => setOpenMenu(false)}
+						>
+							<Link
 								to="/admin/logout"
 								className={styles.menuLink}
 							>
 								Logout
+							</Link>
+						</li>
+						<li
+							className={styles.menuItems}
+							onClick={() => setOpenMenu(false)}
+						>
+							<Link to="/" className={styles.menuLink}>
+								Homepage
 							</Link>
 						</li>
 					</menu>
@@ -79,4 +100,4 @@ function AdminNavBar() {
 	);
 }
 
-export default AdminNavBar
+export default AdminNavBar;

@@ -1,0 +1,23 @@
+.sec {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	max-width: 50rem;
+	gap: 3rem;
+	margin-inline: 2rem;
+}
+.h2 {
+	margin-inline: 2rem;
+	margin-block: 4rem;
+}
+
+.sectionInfo {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin-block: 2rem;
+}
+.sectionLinks {
+	color: #282828;
+
+}

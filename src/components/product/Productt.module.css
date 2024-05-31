@@ -25,7 +25,7 @@
 	transform: scale(1.05);
 }
 
-.productContainer>img {
+.productContainer > img {
 	width: 100%;
 	height: auto;
 	border-radius: 0.5rem 0.5rem 0 0;

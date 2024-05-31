@@ -1,188 +1,114 @@
 import styles from "./image-upload.module.css";
-import { useState } from "react";
-import { SelectedFiles } from "types/productTypes";
-import { toast, ToastOptions } from "react-toastify";
+import { ProductImages } from "types/productTypes";
+import ImageThumbnail from "./components/ImageThumbnail";
+import SelectImageFiles from "./components/SelectImageFiles";
+import FilePreview from "./components/FilePreview";
+
 
 interface ImageUploadProps {
-	uploadedFiles: SelectedFiles;
-	setUploadedFiles: React.Dispatch<React.SetStateAction<SelectedFiles>>;
+	fileLimit: boolean;
+	setFileLimit: React.Dispatch<React.SetStateAction<boolean>>;
+	images: ProductImages;
+	setImages: React.Dispatch<React.SetStateAction<ProductImages>>;
+	imagesToDelete: string[];
+	setImagesToDelete: React.Dispatch<React.SetStateAction<string[]>>;
 }
+
 
 // Bestämmer max antal bilder som kan laddas upp
 const MAX_UPLOAD_COUNT = 5 as const;
-const allowedTypes = ["image/jpeg", "image/png"] as const;
 
-function ImageUpload({uploadedFiles, setUploadedFiles}: ImageUploadProps) {
-	const [fileLimit, setFileLimit] = useState<boolean>(false);
-	const [previewImages, setPreviewImages] = useState<boolean>(true);
-	const [errors, setErrors] = useState<string | null>(null);
-	const notifyWithOptions = (message: string, options: ToastOptions) => {
-		toast(message, options);
+function ImageUpload({ images, setImages, imagesToDelete, setImagesToDelete, fileLimit, setFileLimit }: ImageUploadProps) {
+	// Tar bort redan sparade bilder
+	const deleteImage = (index: number) => {
+		// Väljer aktuell bild från listan med bilder
+		const imageUrl = images[index];
+		// Kontrollerar att valt index inte är en fil, utan en sträng
+		if (!(imageUrl instanceof File)) {
+			setImagesToDelete([...imagesToDelete, imageUrl]);
+		}
+		setFileLimit(false);
+		// Uppdaterar listan med bilder med den valda bilden borttagen
+		setImages(images.filter((_, i) => i !== index));
+		// Lägger till den valda bilden till listan med bilder som ska tas bort från storage om dokumentet sparas
 	}
+	// Tar bort bilder som nyligen laddats upp men ej sparats till storage
+	const deleteUploadedImage = (index: number, objUrl: string) => {
+		setFileLimit(false);
+		// Tar bort vald fil från listan med  biler
+		setImages(() => images.filter((_, i) => i !== index))
+		// Tar bort referens/förhandgranskning av bild från minnet.
+		URL.revokeObjectURL(objUrl);
+	}
+	// Sorterar listan med bilder
 	const sortImages = (indexOne: number, indexTwo: number) => {
-		if (uploadedFiles.length < 2) {
+		// Om det bara finns en bild i listan, return
+		if (images.length < 2) {
 			return;
+		// Om bilden redan är "högst upp" i listan kan den inte flyttas högre, return.
 		} else if (indexOne > indexTwo && indexOne < 1) {
-			return
-		} else if (indexOne < indexTwo && indexOne === uploadedFiles.length - 1) {
+			return;
+		// Om bilden redan är sist i listan kan den inte flyttas längre ner, return
+		} else if (indexOne < indexTwo && indexOne === images.length - 1) {
 			return;
 		}
-		const arr = [...uploadedFiles];
+		// Annars flytta bilden. Skapar först en kopia av listan.
+		const arr = [...images];
+		// Med hjälp av destrukturering byt plats på elementen i listan.
 		[arr[indexOne], arr[indexTwo]] = [arr[indexTwo], arr[indexOne]];
-		setUploadedFiles(arr);
-	}
-	// Hanterar val av bilder
-	const handleFileSelection = (
-		event: React.ChangeEvent<HTMLInputElement>
-	) => {
-		setErrors(null);
-		// Om inga filer är valda, return
-		if (!event.target.files) {
-			return;
-		}
-		// Skapar en tom array, att använda för jämförelser
-		let selectedFiles: SelectedFiles = [];
-		// Om det finns valda filer i state, lägg till dom i den tomma arrayen
-		if (uploadedFiles.length > 0) {
-			selectedFiles = [...uploadedFiles];
-		}
-		let limitExceeded = false;
-		// Skapar en ny array med de senast valda filerna
-		const filesArray = Array.prototype.slice.call(event.target.files);
-		filesArray.some((file) => {
-			if (!allowedTypes.includes(file.type)) {
-				//invalidFileType();
-				notifyWithOptions("Unvalid file type, please select jpg/png.", {type: "info", position: "top-center", autoClose: 2000});
-				return;
-			}
-			// Om vald fil inte redan finns, pusha till arrayen
-			if (selectedFiles.findIndex((f) => f.name === file.name) === -1) {
-				selectedFiles.push(file);
-			}
-			// Om max antal valda filer, ändra state fileLimit
-			if (selectedFiles.length === MAX_UPLOAD_COUNT) {
-				setFileLimit(true);
-			}
-			// Om fler än max antal, ändra state fileLimit till false, limitExceeded till true
-			if (selectedFiles.length > MAX_UPLOAD_COUNT) {	
-				setFileLimit(false);
-				limitExceeded = true;
-				setErrors("Allowed number of files excceded");
-				return true;
-			}
-		});
-		if (!limitExceeded) {
-			// Om inte maxgräns överträds, uppdatera state med den skapade arrayen
-			setUploadedFiles(selectedFiles);
-		}
+		// Uppdatera state med den nya sorterade listan
+		setImages(arr);
 	};
-	// Ta bort bild från listan med valda filer
-	const deleteImage = (delImg: File) => {
-		// Skapar en ny array med alla bilder förutom den valda
-		const filteredArray = uploadedFiles.filter((img) => img.name != delImg.name);
-		// Uppdaterar state uploadedFiles med den filtrerade arrayen utan den valda bilden
-		setUploadedFiles(filteredArray)
-		notifyWithOptions(`Image: ${delImg.name}, deleted.`, {type: "success", position: "top-center", autoClose: 2000})
-
-	};
-	const getFileSize = (size: number) => {
-		if (size < 1024) {
-			return `${size} bytes`;
-		} else if (size >= 1024 && size < 1048576) {
-			return `${(size / 1024).toFixed(1)} KB`;
-		} else if (size >= 1048576) {
-			return `${(size / 1048576).toFixed(1)} MB`;
-		}
-	}
-
-	return (
-		<div className={styles.imgDiv}>
-			<h4 className={styles.h4}>Add product images </h4>
-			<input
-				type="file"
-				id="fileUpload"
-				multiple
-				accept=".jpg, .jpeg, .png"
-				className={styles.fileInput}
-				onChange={handleFileSelection}
-				disabled={fileLimit}
-			/>
-			<label htmlFor="fileUpload" className={styles.label}>
-				<a className={styles.uploadLink}>Choose images</a>
-				<button
-					type="button"
-					onClick={() => setPreviewImages(!previewImages)}
-					className={styles.previewButton}
-				>
-					{previewImages ? "Hide previews" : "Show previews"}
-				</button>
-			</label>
-			<p className={styles.pUploadedCount}>
-				{uploadedFiles.length} / {MAX_UPLOAD_COUNT}
-			</p>
-			<p className={styles.imageErrors}>{errors ? errors : null}</p>
-			{uploadedFiles.length > 0 && (
-				<ul className={styles.imgUl}>
-					{previewImages &&
-						uploadedFiles.map((file, index) => {
-							return (
-								<li
-									key={file.name}
-									className={styles.previewImgLi}
-								>
-									<img
-										className={styles.previewImg}
-										src={URL.createObjectURL(
-											uploadedFiles[index]
-										)}
-									/>
-									<div className={styles.imgPreviewDetails}>
-										<p className={styles.previemFileName}>
-											<b>{index + 1}.</b>
-										</p>
-										<p className={styles.previewFileName}>
-											Filename: {file.name}
-										</p>
-										<p className={styles.previewFileName}>
-											Filesize: {getFileSize(file.size)}
-										</p>
-										<div className={styles.buttonsDiv}>
-											<button
-												type="button"
-												onClick={() =>
-													deleteImage(file)
-												}
-												className={styles.deleteButton}
-											>
-												Delete
-											</button>
-											{/* Up */}
-											<button
-												className={styles.arrowButton}
-												onClick={() =>
-													sortImages(index, index - 1)
-												}
-											>
-												&#8743;
-											</button>
-											{/* Down */}
-											<button
-												className={styles.arrowButton}
-												onClick={() =>
-													sortImages(index, index + 1)
-												}
-											>
-												&#8744;
-											</button>
-										</div>
-									</div>
-								</li>
-							);
-						})}
-				</ul>
-			)}
-		</div>
-	);
+		return (
+			<div className={styles.imgDiv}>
+				<h4 className={styles.h4}>Product images </h4>
+				<p className={styles.pUploadDirections}>
+					Upload product images and sort them in the order they will
+					be displayed.{" "}
+				</p>
+				<p className={styles.pUploadedCount}>
+					{images.length} / {MAX_UPLOAD_COUNT}
+				</p>
+				<SelectImageFiles
+					images={images}
+					setImages={setImages}
+					fileLimit={fileLimit}
+					setFileLimit={setFileLimit}
+				/>
+				<div className={styles.divThumbnails}>
+					<ul className={styles.imgUl}>
+						{images.length > 0 &&
+							images.map((img, index) => {
+								if (typeof img == "string") {
+									return (
+										<ImageThumbnail
+											key={img}
+											imageUrl={img}
+											index={index}
+											deleteImage={deleteImage}
+											sortImages={sortImages}
+										/>
+									);
+								} else {
+									return (
+										<FilePreview
+											key={img.name}
+											file={img}
+											index={index}
+											deleteUploadedImage={
+												deleteUploadedImage
+											}
+											sortImages={sortImages}
+										/>
+									);
+								}
+							})}
+					</ul>
+				</div>
+			</div>
+		);
+	
+	
 }
 
-export default ImageUpload
+export default ImageUpload;
