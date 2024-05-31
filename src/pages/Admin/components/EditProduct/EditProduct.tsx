@@ -42,6 +42,7 @@ function EditProduct({productState, documentDataState, imagesState, stockSizeSta
 	const categories = useAppSelector(memoCategories) as CategoriesType;
 	const genders = useAppSelector(memoGenders) as GendersType;
 	const allSizes = useAppSelector(memoSizes);
+	// Funktion som returnerar storlekar för respektive kombination av kategori och kön.
 	const getSizes = (category: CategoryType, gender: GenderType): SizesType => {
 		// Returnerar rätt storlekar beroende på kategori och kön
 		if (category === "Hats" || category === "Bags") {
@@ -51,6 +52,7 @@ function EditProduct({productState, documentDataState, imagesState, stockSizeSta
 		}
 		return allSizes.Clothes[category];
 	};
+	// Skapar ett objekt med fält för produktdata
 	const createInitialState = () => {
 		const newState: NewProductState = {
 			name: "",
@@ -62,6 +64,7 @@ function EditProduct({productState, documentDataState, imagesState, stockSizeSta
 		};
 		return newState;
 	};
+	// Skapar en array med objekt för storlekar/lagersaldo utifrån storlekarna för vald kombination av kategori och kön.
 	const createStockState = () => {
 		const sizes: SizesType = getSizes(categories[0], genders[0]);
 		const stock: StockSizeState = sizes.map(
@@ -131,7 +134,7 @@ function EditProduct({productState, documentDataState, imagesState, stockSizeSta
 					newImagesUrls.push(img);
 				}
 			}
-			// Om det finns bilder i listan
+			// Om det finns bilder i listan över bilder att ta bort
 			if (imagesToDelete.length > 0) {
 				for (const url of imagesToDelete) {
 					// Skapar en referens från bildens url
@@ -154,24 +157,33 @@ function EditProduct({productState, documentDataState, imagesState, stockSizeSta
 			return;
 		}
 		try {
-			// Finns imagestate är det ett existerande dokument
-			if (imagesState) {
-				// Går igenom listan med bilder
+			// Funktion som tar bort bilder från storage
+			const deleteFromStorage = async () => {
+				// De aktuella bilderna för produkten
 				for (const url of images) {
-					// Är det en fil, return
-					if (url instanceof File){
-						return null
-					} else {
+					// Om objektet är en fil då är bilden sparad till minnet men ej till storage.
+					if (!(url instanceof File)) {
 						// Annars skapa en referens från bild url:en
 						const storageRef = ref(storage, url);
 						// Ta bort bild från storage
 						await deleteObject(storageRef);
 					}
 				}
+				// Eventuella borttagna från listan med bilder men ej raderade från storage än
+				if (imagesToDelete.length > 0) {
+					for (const img of imagesToDelete) {
+						const storageRef = ref(storage, img);
+						await deleteObject(storageRef);
+					}
+				}
 			}
+			// Funktion för att hantera borttagning av bilder från storage.
+			await deleteFromStorage();
+			
 			// Efter att bilderna är raderade från storage, ta bort dokumentet från firestore
 			await toast.promise(deleteDoc(doc(db, "products", documentData.id)), { pending: "Deleting product from database", success: "Product successfully deleted", error: "An error occurred when trying to delete product" });
 			// Återställ state
+			resetProduct();
 			resetUpdateState();
 		} catch (error) {
 			console.error("Error deleting images", error);
@@ -191,7 +203,7 @@ function EditProduct({productState, documentDataState, imagesState, stockSizeSta
 			name: product.name,
 			description: product.description,
 			brand: product.brand,
-			price: product.price,
+			price: Number(product.price),
 			gender: product.gender,
 			category: product.category,
 			stock: [...stockSizes],
